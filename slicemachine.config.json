@@ -1,0 +1,6 @@
+{
+  "libraries": ["./app/slices"],
+  "adapter": "@slicemachine/adapter-nuxt",
+  "repositoryName": "p2backpack",
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator"
+}
