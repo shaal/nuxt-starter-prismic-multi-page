@@ -19,7 +19,15 @@ export default defineNuxtConfig({
         },
         { name: 'format-detection', content: 'telephone=no' }
       ],
-      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@700&family=Glegoo&display=swap'
+        }
+      ]
     }
   },
 
@@ -49,6 +57,14 @@ export default defineNuxtConfig({
           type: 'page',
           uid: 'home',
           path: '/',
+        },
+        {
+          type: 'landing',
+          path: '/landing',
+        },
+        {
+          type: 'about',
+          path: '/about',
         },
       ]
     },

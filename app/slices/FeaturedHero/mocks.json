@@ -1,0 +1,67 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"overline": {
+				"__TYPE__": "FieldContent",
+				"value": "Sample Eyebrow",
+				"type": "Text"
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Where every shot serves something greater"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "We manufacture high-quality ammunition, built to exacting military specifications, because performance isn't a feature—it's a foundation"
+						}
+					}
+				]
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"key": "0eb37972-4184-4847-b857-7c6a23bef01e",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "#",
+					"text": "Primary Action"
+				}
+			},
+			"background_image": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1511497584788-876760111969",
+					"width": 3456,
+					"height": 2304
+				},
+				"url": "https://images.unsplash.com/photo-1511497584788-876760111969",
+				"width": 3456,
+				"height": 2304,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "Forest mountain landscape with evergreen trees",
+				"thumbnails": {}
+			}
+		},
+		"items": []
+	}
+]

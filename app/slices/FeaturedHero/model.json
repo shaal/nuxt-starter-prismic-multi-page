@@ -1,0 +1,52 @@
+{
+  "id": "featured_hero",
+  "type": "SharedSlice",
+  "name": "FeaturedHero",
+  "description": "Hero section with background image, overline, heading, description and call-to-action button",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default hero section variation",
+      "imageUrl": "",
+      "primary": {
+        "overline": {
+          "type": "Text",
+          "config": {
+            "label": "Overline"
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "single": "heading1"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "allowText": true,
+            "select": null
+          }
+        },
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background Image"
+          }
+        }
+      }
+    }
+  ]
+}
