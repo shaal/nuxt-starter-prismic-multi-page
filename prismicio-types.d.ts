@@ -192,6 +192,7 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | FeaturedHeroSlice
   | HeroSlice
   | QuoteSlice
   | TextSlice
