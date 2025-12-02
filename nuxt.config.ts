@@ -62,10 +62,6 @@ export default defineNuxtConfig({
           type: 'landing',
           path: '/landing',
         },
-        {
-          type: 'about',
-          path: '/about',
-        },
       ]
     },
     components: {

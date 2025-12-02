@@ -69,71 +69,6 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type LandingDocumentDataSlicesSlice = FeaturedHeroSlice | LandingHeroSlice;
-
-/**
- * Content for Landing documents
- */
-interface LandingDocumentData {
-  /**
-   * Slice Zone field in *Landing*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
-   */
-  slices: prismic.SliceZone<LandingDocumentDataSlicesSlice> /**
-   * Meta Title field in *Landing*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: landing.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Landing*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: landing.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Landing*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Landing document from Prismic
- *
- * - **API ID**: `landing`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type LandingDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<LandingDocumentData>,
-    "landing",
-    Lang
-  >;
-
 /**
  * Item in *Navigation → Links*
  */
@@ -283,7 +218,6 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
-  | LandingDocument
   | NavigationDocument
   | PageDocument
   | SettingsDocument;
@@ -1045,9 +979,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      LandingDocument,
-      LandingDocumentData,
-      LandingDocumentDataSlicesSlice,
       NavigationDocument,
       NavigationDocumentData,
       NavigationDocumentDataLinksItem,
