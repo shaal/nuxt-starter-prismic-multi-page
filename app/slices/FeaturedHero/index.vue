@@ -28,6 +28,7 @@ const HeroHeading = defineComponent({
             lineHeight: "1.1",
             color: "#ffffff",
             margin: "0",
+            textTransform: "uppercase",
           },
         },
         slots.default?.()
