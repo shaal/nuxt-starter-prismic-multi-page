@@ -55,6 +55,9 @@
             },
             "text_with_image": {
               "type": "SharedSlice"
+            },
+            "product_cards_grid": {
+              "type": "SharedSlice"
             }
           }
         }

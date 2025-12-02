@@ -9,6 +9,9 @@ export const components = defineSliceZoneComponents({
   image: defineAsyncComponent(() => import("./Image/index.vue")),
   image_cards: defineAsyncComponent(() => import("./ImageCards/index.vue")),
   landing_hero: defineAsyncComponent(() => import("./LandingHero/index.vue")),
+  product_cards_grid: defineAsyncComponent(
+    () => import("./ProductCardsGrid/index.vue"),
+  ),
   quote: defineAsyncComponent(() => import("./Quote/index.vue")),
   text: defineAsyncComponent(() => import("./Text/index.vue")),
   text_with_image: defineAsyncComponent(

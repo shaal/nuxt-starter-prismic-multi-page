@@ -133,7 +133,8 @@ type PageDocumentDataSlicesSlice =
   | TextSlice
   | ImageSlice
   | ImageCardsSlice
-  | TextWithImageSlice;
+  | TextWithImageSlice
+  | ProductCardsGridSlice;
 
 /**
  * Content for Page documents
@@ -716,6 +717,180 @@ export type LandingHeroSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *ProductCardsGrid → Default → Primary → Product Cards*
+ */
+export interface ProductCardsGridSliceDefaultPrimaryProductCardsItem {
+  /**
+   * Product Link field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].product_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  product_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Product Image field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].product_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  product_image: prismic.ImageField<never>;
+
+  /**
+   * Badge Image field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].badge_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  badge_image: prismic.ImageField<never>;
+
+  /**
+   * Background Image field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].background_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Volume field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 15L
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].volume
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  volume: prismic.KeyTextField;
+
+  /**
+   * Product Name field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Product name
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].product_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  product_name: prismic.KeyTextField;
+
+  /**
+   * Product Description field in *ProductCardsGrid → Default → Primary → Product Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Product description
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[].product_description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  product_description: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ProductCardsGrid → Default → Primary*
+ */
+export interface ProductCardsGridSliceDefaultPrimary {
+  /**
+   * Product Cards field in *ProductCardsGrid → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.product_cards[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  product_cards: prismic.GroupField<
+    Simplify<ProductCardsGridSliceDefaultPrimaryProductCardsItem>
+  >;
+
+  /**
+   * Jumbo Card Background Image field in *ProductCardsGrid → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.jumbo_background_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  jumbo_background_image: prismic.ImageField<never>;
+
+  /**
+   * Jumbo Card Heading field in *ProductCardsGrid → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Enter heading
+   * - **API ID Path**: product_cards_grid.default.primary.jumbo_heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  jumbo_heading: prismic.RichTextField;
+
+  /**
+   * Jumbo Card Description field in *ProductCardsGrid → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Enter description
+   * - **API ID Path**: product_cards_grid.default.primary.jumbo_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  jumbo_description: prismic.RichTextField;
+
+  /**
+   * Jumbo Card Button field in *ProductCardsGrid → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_cards_grid.default.primary.jumbo_button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  jumbo_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for ProductCardsGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Product cards grid with jumbo promotional card
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProductCardsGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProductCardsGridSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProductCardsGrid*
+ */
+type ProductCardsGridSliceVariation = ProductCardsGridSliceDefault;
+
+/**
+ * ProductCardsGrid Shared Slice
+ *
+ * - **API ID**: `product_cards_grid`
+ * - **Description**: A grid of product cards with a promotional jumbo card
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProductCardsGridSlice = prismic.SharedSlice<
+  "product_cards_grid",
+  ProductCardsGridSliceVariation
+>;
+
+/**
  * Primary content in *Quote → Default → Primary*
  */
 export interface QuoteSliceDefaultPrimary {
@@ -1012,6 +1187,11 @@ declare module "@prismicio/client" {
       LandingHeroSliceDefaultPrimary,
       LandingHeroSliceVariation,
       LandingHeroSliceDefault,
+      ProductCardsGridSlice,
+      ProductCardsGridSliceDefaultPrimaryProductCardsItem,
+      ProductCardsGridSliceDefaultPrimary,
+      ProductCardsGridSliceVariation,
+      ProductCardsGridSliceDefault,
       QuoteSlice,
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,

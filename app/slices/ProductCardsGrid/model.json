@@ -1,0 +1,122 @@
+{
+  "id": "product_cards_grid",
+  "type": "SharedSlice",
+  "name": "ProductCardsGrid",
+  "description": "A grid of product cards with a promotional jumbo card",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Product cards grid with jumbo promotional card",
+      "imageUrl": "",
+      "primary": {
+        "product_cards": {
+          "type": "Group",
+          "config": {
+            "label": "Product Cards",
+            "fields": {
+              "product_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Product Link",
+                  "select": null
+                }
+              },
+              "product_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Product Image",
+                  "constraint": {
+                    "width": 800,
+                    "height": 800
+                  },
+                  "thumbnails": []
+                }
+              },
+              "badge_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Badge Image",
+                  "constraint": {
+                    "width": 200,
+                    "height": 336
+                  },
+                  "thumbnails": []
+                }
+              },
+              "background_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Background Image",
+                  "constraint": {
+                    "width": 850,
+                    "height": 850
+                  },
+                  "thumbnails": []
+                }
+              },
+              "volume": {
+                "type": "Text",
+                "config": {
+                  "label": "Volume",
+                  "placeholder": "e.g. 15L"
+                }
+              },
+              "product_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Name",
+                  "placeholder": "Product name"
+                }
+              },
+              "product_description": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Description",
+                  "placeholder": "Product description"
+                }
+              }
+            }
+          }
+        },
+        "jumbo_background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Jumbo Card Background Image",
+            "constraint": {
+              "width": 900,
+              "height": 1000
+            },
+            "thumbnails": []
+          }
+        },
+        "jumbo_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Jumbo Card Heading",
+            "single": "heading2",
+            "placeholder": "Enter heading"
+          }
+        },
+        "jumbo_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Jumbo Card Description",
+            "single": "paragraph",
+            "placeholder": "Enter description"
+          }
+        },
+        "jumbo_button": {
+          "type": "Link",
+          "config": {
+            "label": "Jumbo Card Button",
+            "allowText": true,
+            "select": null
+          }
+        }
+      }
+    }
+  ]
+}
