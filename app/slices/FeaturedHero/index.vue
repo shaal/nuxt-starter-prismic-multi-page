@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PrismicRichText, PrismicImage, PrismicLink } from "@prismicio/vue";
 import type { Content } from "@prismicio/client";
+import { defineComponent, h } from "vue";
 
 defineProps(
   getSliceComponentProps<Content.FeaturedHeroSlice>([
@@ -10,6 +11,58 @@ defineProps(
     "context",
   ]),
 );
+
+// Custom rich text components for white text on dark background
+// Using inline styles because scoped CSS doesn't apply to dynamically rendered components
+const HeroHeading = defineComponent({
+  name: "HeroHeading",
+  setup(_, { slots }) {
+    return () =>
+      h(
+        "h1",
+        {
+          style: {
+            fontFamily: '"Barlow Condensed", sans-serif',
+            fontSize: "72px",
+            fontWeight: "700",
+            lineHeight: "1.1",
+            color: "#ffffff",
+            margin: "0",
+          },
+        },
+        slots.default?.()
+      );
+  },
+});
+
+const HeroParagraph = defineComponent({
+  name: "HeroParagraph",
+  setup(_, { slots }) {
+    return () =>
+      h(
+        "p",
+        {
+          style: {
+            fontFamily: '"Barlow", sans-serif',
+            fontSize: "24px",
+            fontWeight: "400",
+            lineHeight: "1.4",
+            color: "#ffffff",
+            margin: "0",
+          },
+        },
+        slots.default?.()
+      );
+  },
+});
+
+const headingComponents = {
+  heading1: HeroHeading,
+};
+
+const descriptionComponents = {
+  paragraph: HeroParagraph,
+};
 </script>
 
 <template>
@@ -35,16 +88,20 @@ defineProps(
         </p>
 
         <!-- Heading -->
-        <PrismicRichText
-          :field="slice.primary.heading"
-          class="featured-hero__heading"
-        />
+        <div class="featured-hero__heading">
+          <PrismicRichText
+            :field="slice.primary.heading"
+            :components="headingComponents"
+          />
+        </div>
 
         <!-- Description -->
-        <PrismicRichText
-          :field="slice.primary.description"
-          class="featured-hero__description"
-        />
+        <div class="featured-hero__description">
+          <PrismicRichText
+            :field="slice.primary.description"
+            :components="descriptionComponents"
+          />
+        </div>
 
         <!-- CTA Button -->
         <div class="featured-hero__actions">
@@ -62,19 +119,11 @@ defineProps(
 </template>
 
 <style scoped>
-/* Design tokens from Figma */
-:root {
-  --fh-color-tan: #e5ccad;
-  --fh-color-dark-green: #14452f;
-  --fh-color-dark-green-bold: #18392b;
-}
-
 .featured-hero {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  min-height: 100vh;
   padding: 0 64px;
   overflow: hidden;
 }
@@ -90,7 +139,7 @@ defineProps(
   z-index: 0;
 }
 
-/* Gradient overlays for readability */
+/* Gradient overlays for readability - matches Figma exactly */
 .featured-hero__gradient {
   position: absolute;
   inset: 0;
@@ -121,12 +170,15 @@ defineProps(
   padding-bottom: 80px;
 }
 
-/* Content area */
+/* Content area with shadow from Figma */
 .featured-hero__content {
   display: flex;
   flex-direction: column;
   gap: 24px;
   max-width: 650px;
+  box-shadow:
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08),
+    0px 8px 8px -4px rgba(16, 24, 40, 0.03);
 }
 
 /* Eyebrow text */
@@ -141,32 +193,9 @@ defineProps(
   margin: 0;
 }
 
-/* Heading */
-.featured-hero__heading {
-  margin: 0;
-}
-
-.featured-hero__heading :deep(h1) {
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 72px;
-  font-weight: 700;
-  line-height: 1.1;
-  color: #ffffff;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-/* Description */
+/* Heading and description wrappers */
+.featured-hero__heading,
 .featured-hero__description {
-  margin: 0;
-}
-
-.featured-hero__description :deep(p) {
-  font-family: "Barlow", sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1.4;
-  color: #ffffff;
   margin: 0;
 }
 
@@ -187,7 +216,7 @@ defineProps(
   background-color: #e5ccad;
   border: 1px solid #e5ccad;
   color: #14452f;
-  font-family: "DIN Condensed", "Barlow Condensed", sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   font-size: 24px;
   font-weight: 700;
   line-height: 1;
@@ -211,14 +240,6 @@ defineProps(
     padding-top: 200px;
     padding-bottom: 60px;
   }
-
-  .featured-hero__heading :deep(h1) {
-    font-size: 56px;
-  }
-
-  .featured-hero__description :deep(p) {
-    font-size: 20px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -227,7 +248,7 @@ defineProps(
   }
 
   .featured-hero__container {
-    padding-top: 150px;
+    padding-top: 100px;
     padding-bottom: 48px;
   }
 
@@ -240,14 +261,6 @@ defineProps(
     font-size: 16px;
   }
 
-  .featured-hero__heading :deep(h1) {
-    font-size: 40px;
-  }
-
-  .featured-hero__description :deep(p) {
-    font-size: 18px;
-  }
-
   .featured-hero__button {
     font-size: 20px;
     padding: 14px 18px;
@@ -257,14 +270,6 @@ defineProps(
 @media (max-width: 480px) {
   .featured-hero {
     padding: 0 16px;
-  }
-
-  .featured-hero__heading :deep(h1) {
-    font-size: 32px;
-  }
-
-  .featured-hero__description :deep(p) {
-    font-size: 16px;
   }
 }
 </style>
