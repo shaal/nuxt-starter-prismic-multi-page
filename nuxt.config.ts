@@ -57,11 +57,7 @@ export default defineNuxtConfig({
           type: 'page',
           uid: 'home',
           path: '/',
-        },
-        {
-          type: 'landing',
-          path: '/landing',
-        },
+        }
       ]
     },
     components: {
